@@ -6,3 +6,22 @@ users:
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     groups: sudo
     shell: /bin/bash
+  
+write_files:
+  - path: /tmp/install_packages.sh
+    content: |
+${install_packages}
+  - path: /tmp/chrony_setup.sh
+    content: |
+${chrony_setup}
+  - path: /tmp/dhcpd_setup.sh
+    content: |
+${dhcpd_setup}
+  - path: /tmp/named_setup.sh
+    content: |
+${named_setup}
+  - path: /tmp/firewall_setup.sh
+    content: |
+${firewall_setup}
+runcmd:
+${runcmd_router}

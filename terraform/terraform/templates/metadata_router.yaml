@@ -1,0 +1,13 @@
+#cloud-config
+local-hostname: ${hostname}
+instance-id: ${hostname}
+network:
+  version: 2
+  ethernets:
+    eth0:
+      addresses:
+        - ${ip_address}/${netmask}
+      nameservers:
+        addresses: ${nameservers}
+    eth1:
+      dhcp4: true

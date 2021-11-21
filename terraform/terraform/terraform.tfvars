@@ -30,19 +30,5 @@ rancher_nodes_settings = {
 
 #registry_key       = ""
 #ssh_public_key     = ""
-template_name      = "PZhukov/2021.1-PoC/node-template"
 
-scripts  = {
-    runcmd      = <<EOT
-   - bash /tmp/install_packages.sh
-   - bash /tmp/chrony_setup.sh
-   - bash /tmp/dhcpd_setup.sh
-   - bash /tmp/named_setup.sh
-   - bash /tmp/firewall_setup.sh
-EOT
-    install_packages   = "install_packages.sh"
-    chrony_setup       = "chrony_setup.sh"
-    dhcpd_setup        = "dhcpd_setup.sh"
-    named_setup        = "named_setup.sh"
-    firewall_setup     = "firewall_setup.sh"
-  }
+template_name      = "PZhukov/2021.1-PoC/node-template"

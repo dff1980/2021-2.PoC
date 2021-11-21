@@ -8,20 +8,89 @@ users:
     shell: /bin/bash
   
 write_files:
-  - path: /tmp/install_packages.sh
+#Salt States
+  - encoding: b64
+    content: ${salt_top_sls}
+    path: /srv/salt/top.sls
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_router_sls}
+    path: /srv/salt/router.sls
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_rancher_sls}
+    path: /srv/salt/rancher.sls
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_router_chrony}
+    path: /srv/salt/router/ntp.conf
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_router_dhcpd_conf}
+    path: /srv/salt/router/dhcpd.conf
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_router_rancher_suse_ru}
+    path: /srv/salt/router/rancher.suse.ru
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_router_addr_arpa}
+    path: /srv/salt/router/14.168.192.in-addr.arpa
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_reactor_dhcpd_conf}
+    path: /srv/reactor/start.sls
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_main_ntp}
+    path: /srv/salt/main/ntp.conf
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
+    content: ${salt_ssh_sls}
+    path: /srv/salt/ssh.sls
+    permissions: '0644'
+    owner: root:salt
+  - path: /srv/salt/registry.sls
     content: |
-${install_packages}
-  - path: /tmp/chrony_setup.sh
-    content: |
-${chrony_setup}
-  - path: /tmp/dhcpd_setup.sh
-    content: |
-${dhcpd_setup}
-  - path: /tmp/named_setup.sh
-    content: |
-${named_setup}
-  - path: /tmp/firewall_setup.sh
-    content: |
-${firewall_setup}
+        registration_sles:
+            cmd.run:
+              - name: |
+                  if [ "$(echo $(SUSEConnect --status-text | grep -A 2 '(SLES/15.3/x86_64)' | tail -1))" = "Not Registered" ]
+                    then
+                      ${registry_cmd}
+                      zypper ref
+                  fi
+#Master config
+  - encoding: b64
+    content: ${salt_master_conf}
+    path: /etc/salt/master.d/router.conf
+    permissions: '0644'
+    owner: root:root
+  - encoding: b64
+    content: ${salt_autosign_key}
+    path: /etc/salt/autosign_grains/autosign_key
+    permissions: '0644'
+    owner: root:root
+#Minion config
+  - encoding: b64
+    content: ${salt_router_conf}
+    path: /etc/salt/minion.d/router.conf
+    permissions: '0644'
+    owner: root:root
+  - encoding: b64
+    content: ${salt_autosign_grains_conf}
+    path: /etc/salt/minion.d/autosign-grains.conf
+    permissions: '0644'
+    owner: root:root
+
 runcmd:
 ${runcmd_router}

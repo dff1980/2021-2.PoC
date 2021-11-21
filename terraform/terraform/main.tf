@@ -39,7 +39,7 @@ resource "vsphere_virtual_machine" "rancher_nodes" {
   extra_config = {
     "guestinfo.metadata"          = base64gzip(data.template_file.metadata[count.index].rendered)
     "guestinfo.metadata.encoding" = "gzip+base64"
-    "guestinfo.userdata"          = base64gzip(data.template_file.userdata.rendered)
+    "guestinfo.userdata"          = base64gzip(data.template_file.userdata_rancher.rendered)
     "guestinfo.userdata.encoding" = "gzip+base64"
   }
 

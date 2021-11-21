@@ -17,3 +17,7 @@ Rancher 2.6 PoC
  https://github.com/linoproject/terraform/tree/master/rancher-lab
 
 
+    - content: |
+    
+        # Salt - one-time modification performed on {{ salt['cmd.run']('date') }}
+

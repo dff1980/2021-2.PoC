@@ -50,13 +50,20 @@ variable "ssh_public_key" {
   sensitive = true
 }
 
-variable "scripts" {
-  type = object({
-    runcmd = string
-    install_packages = string
-    chrony_setup = string
-    dhcpd_setup = string
-    named_setup = string
-    firewall_setup = string
-  })
+variable "general_ssh_public_key" {
+  type    = string
+  default = ""
+  sensitive = true
+}
+
+variable "ssh_private_key" {
+  type    = string
+  default = ""
+  sensitive = true
+}
+
+variable "registry_key" {
+  description = "SLES Registry Key"
+  type        = string
+  sensitive   = true
 }

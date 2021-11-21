@@ -12,5 +12,16 @@ write_files:
         DNS_SERVERS="${router_ip}"
         sudo sed -i "s/NETCONFIG_DNS_STATIC_SERVERS=\".*\"/NETCONFIG_DNS_STATIC_SERVERS=\"$DNS_SERVERS\"/" /etc/sysconfig/network/config
         sudo netconfig update -f
+#Minion config
+  - encoding: b64
+    content: ${salt_rancher_conf}
+    path: /etc/salt/minion.d/rancher.conf
+    permissions: '0644'
+    owner: root:root
+  - encoding: b64
+    content: ${salt_autosign_grains_conf}
+    path: /etc/salt/minion.d/autosign-grains.conf
+    permissions: '0644'
+    owner: root:root
 runcmd:
 ${runcmd}    

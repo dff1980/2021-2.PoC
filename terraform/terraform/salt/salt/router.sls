@@ -1,6 +1,13 @@
-dhcp-server:
+include:
+  - registration
+
+dns-dhcp-server-install:
   pkg.installed:
-    - name: dhcp-server
+    - names:
+        - dhcp-server
+        - bind
+    - require:
+        - sls: registration
 
 dhcpd:
   service.running:
@@ -30,10 +37,6 @@ dhcpd:
     - content: 'DHCPD_INTERFACE="eth0"'
     - require:
       - pkg: dhcp-server
-
-dns-server:
-  pkg.installed:
-    - name: bind
 
 named:
   service.running:
@@ -101,7 +104,6 @@ firewald:
         firewall-cmd --permanent --zone=internal --set-target=ACCEPT
         firewall-cmd --permanent --zone=external --add-service=http --add-service=https
         firewall-cmd --permanent --zone=external --add-masquerade
-        firewall-cmd --reload
         systemctl restart firewalld
     - cwd: /tmp
     - shell: /bin/bash
@@ -118,6 +120,8 @@ firewald:
 chrony-pool-suse-remove:
   pkg.purged:
     - name: chrony-pool-suse
+    - require:
+        - sls: registration
 
 chronyd-install:
   pkg.installed:

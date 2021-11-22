@@ -80,6 +80,8 @@ docker:
 chrony-pool-suse-remove:
   pkg.purged:
     - name: chrony-pool-suse
+    - require:
+        - sls: registration
 
 chronyd-install:
   pkg.installed:

@@ -13,9 +13,9 @@
 }
 
 rancher_nodes_ip = [
-    "101",
-    "102",
-    "103",
+    "11",
+    "12",
+    "13",
 ]
 
 rancher_nodes_settings = {

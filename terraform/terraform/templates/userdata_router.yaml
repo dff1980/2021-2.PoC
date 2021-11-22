@@ -59,14 +59,14 @@ write_files:
     path: /srv/salt/ssh.sls
     permissions: '0644'
     owner: root:salt
-  - path: /srv/salt/registry.sls
+  - path: /srv/salt/registration.sls
     content: |
         registration_sles:
             cmd.run:
               - name: |
                   if [ "$(echo $(SUSEConnect --status-text | grep -A 2 '(SLES/15.3/x86_64)' | tail -1))" = "Not Registered" ]
                     then
-                      ${registry_cmd}
+                      ${registration_cmd}
                       zypper ref
                   fi
 #Master config

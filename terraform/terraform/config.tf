@@ -1,6 +1,6 @@
 locals {
 
-  registry_cmd =  "SUSEConnect -e pzhukov@suse.com -r ${var.registry_key}"
+  registration_cmd =  "SUSEConnect -e pzhukov@suse.com -r ${var.registry_key}"
 
   runcmd_router = <<EOT
    - SUSEConnect -e pzhukov@suse.com -r ${var.registry_key}
@@ -102,7 +102,7 @@ data template_file "userdata_router" {
     username                   = var.rancher_nodes_settings.username
     ssh_public_key             = var.ssh_public_key
     runcmd_router       = local.runcmd_router
-    registry_cmd        = local.registry_cmd
+    registration_cmd    = local.registration_cmd
     salt_top_sls        = filebase64("${path.module}/salt/salt/top.sls")
     salt_router_sls     = filebase64("${path.module}/salt/salt/router.sls")
     salt_rancher_sls    = filebase64("${path.module}/salt/salt/rancher.sls")

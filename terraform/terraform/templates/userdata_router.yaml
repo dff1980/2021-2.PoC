@@ -66,7 +66,8 @@ write_files:
               - name: |
                   if [ "$(echo $(SUSEConnect --status-text | grep -A 2 '(SLES/15.3/x86_64)' | tail -1))" = "Not Registered" ]
                     then
-                      ${registration_cmd}
+                      ping updates.suse.com -c 10
+                      ${registration_cmd} > /var/log/registration.log 2>&1
                       zypper ref
                   fi
 #Master config

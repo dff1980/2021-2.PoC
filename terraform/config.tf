@@ -8,6 +8,8 @@ locals {
    - ssh-keygen -N "" -f /root/.ssh/id_rsa
    - mkdir -p /srv/salt/ssh
    - cp /root/.ssh/id_rsa.pub /srv/salt/ssh/
+   - cp /root/.ssh/id_rsa.pub /home/sles/.ssh/
+   - chown sles:users /home/sles/.ssh/id_rsa.pub
    - salt-call --local state.apply
    - zypper in -y salt-master
    - systemctl enable salt-master --now

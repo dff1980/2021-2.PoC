@@ -161,7 +161,7 @@ terraform destroy
 
 ???Docker Install URL none???
 
-??? shut off sshd at template and start at salt ???
+??? shut off sshd key authentication at template and start at salt ???
 
 # Cloud Init for Rancher nodes
 ```yaml

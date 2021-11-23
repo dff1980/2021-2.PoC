@@ -158,7 +158,10 @@ terraform destroy
 ```
 
 # Template Node
-Docker Install URL none
+
+???Docker Install URL none???
+
+??? shut off sshd at template and start at salt ???
 
 # Cloud Init for Rancher nodes
 ```yaml

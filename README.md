@@ -157,6 +157,36 @@ terraform apply
 terraform destroy
 ```
 
+# Template Node
+Docker Install URL none
+
+# Cloud Init for Rancher nodes
+```yaml
+#cloud-config
+write_files:
+  - path: /etc/salt/minion.d/rke.conf
+    content: |
+        master: 192.168.14.254
+        MINION_ID_REMOVE_DOMAIN: true
+        grains:
+          roles: rke   
+    permissions: '0644'
+    owner: root:root
+  - path: /etc/salt/minion.d/autosign-grains.conf
+    content: |
+       grains:
+          autosign_key: 39ee687c
+       autosign_grains:
+           - autosign_key
+    permissions: '0644'
+    owner: root:root
+runcmd:
+   - systemctl enable salt-minion --now
+#   - while [ ! $(rpm -qa | grep docker) ]; do sleep 5; done
+```
+
+
+
 ## Appendix
 
 ### Links

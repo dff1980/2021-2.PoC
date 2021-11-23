@@ -120,11 +120,11 @@ zypper install cloud-init-vmware-guestinfo
 ### Clenup Install for creating teamplates
 
 ```bash
-sudo cloud-init clean
+cloud-init clean
 SUSEConnect -d
 SUSEConnect --cleanup
 
-sudo zypper install -y clone-master-clean-up
+zypper install -y clone-master-clean-up
 clone-master-clean-up
 ```
 

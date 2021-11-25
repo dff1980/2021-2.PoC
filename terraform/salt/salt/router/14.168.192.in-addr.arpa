@@ -1,9 +1,9 @@
 $TTL 2D
-@		IN SOA		router.rancher.suse.ru.	root.router.rancher.suse.ru. (
+@		IN SOA		router.stend.suse.ru.	root.router.stend.suse.ru. (
                 2019031800	; serial
                 3H		; refresh
                 1H		; retry
                 1W		; expiry
                 1D )		; minimum
-14.168.192.in-addr.arpa.	IN NS		rancher.suse.ru.
-254.14.168.192.in-addr.arpa.	IN PTR		router.rancher.suse.ru.
+14.168.192.in-addr.arpa.	IN NS		stend.suse.ru.
+254.14.168.192.in-addr.arpa.	IN PTR		router.stend.suse.ru.

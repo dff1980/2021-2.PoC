@@ -5,5 +5,8 @@ base:
   'roles:rancher':
     - match: grain
     - rancher
+  'roles:rke':
+    - match: grain
+    - rke
   '*':
-    - ssh
+    - ssh-key

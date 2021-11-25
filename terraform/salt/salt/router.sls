@@ -30,11 +30,10 @@ dhcpd:
       - pkg: dhcp-server
 
 /etc/sysconfig/dhcpd:
-  file.line:
-    - name: /etc/sysconfig/dhcpd
-    - match: '^DHCPD_INTERFACE=".*"'
-    - mode: replace
-    - content: 'DHCPD_INTERFACE="eth0"'
+  file.replace:
+      - name: /etc/sysconfig/dhcpd
+      - pattern: '^DHCPD_INTERFACE=".*"'
+      - repl: ''DHCPD_INTERFACE="eth0"'
     - require:
       - pkg: dhcp-server
 
@@ -43,12 +42,12 @@ named:
     - enable: True
     - watch:
       - pkg: bind
-      - file: /var/lib/named/master/rancher.suse.ru
+      - file: /var/lib/named/master/stend.suse.ru
       - file: /var/lib/named/master/14.168.192.in-addr.arpa
       - file: /etc/named.conf
     - require:
       - pkg: bind
-      - file: /var/lib/named/master/rancher.suse.ru
+      - file: /var/lib/named/master/stend.suse.ru
       - file: /var/lib/named/master/14.168.192.in-addr.arpa
       - bind_conf
       - named_conf
@@ -59,8 +58,8 @@ bind_conf:
     - group: root
     - mode: 644
     - names:
-       - /var/lib/named/master/rancher.suse.ru:
-         - source: salt://router/rancher.suse.ru
+       - /var/lib/named/master/stend.suse.ru:
+         - source: salt://router/stend.suse.ru
        - /var/lib/named/master/14.168.192.in-addr.arpa:
          - source: salt://router/14.168.192.in-addr.arpa
     - require:
@@ -70,9 +69,9 @@ named_conf:
   file.append:
     - name: /etc/named.conf
     - text: |
-            zone "rancher.suse.ru" in {
+            zone "stend.suse.ru" in {
                     allow-transfer { any; };
-                    file "master/rancher.suse.ru";
+                    file "master/stend.suse.ru";
                     type master;
             };
             zone "14.168.192.in-addr.arpa" in {
@@ -81,13 +80,12 @@ named_conf:
             };
 
 /etc/sysconfig/network/config:
-  file.line:
-    - name: /etc/sysconfig/network/config
-    - match: 'NETCONFIG_DNS_STATIC_SERVERS=\".*\"'
-    - mode: replace
-    - content: 'NETCONFIG_DNS_STATIC_SERVERS="127.0.0.1"'
-    - require:
-      - pkg: bind
+  file.replace:
+      - name: /etc/sysconfig/network/config
+      - pattern: 'NETCONFIG_DNS_STATIC_SERVERS=\".*\"'
+      - repl: 'NETCONFIG_DNS_STATIC_SERVERS="127.0.0.1"'
+      - require:
+        - pkg: bind
 
 netconfig_update:
     cmd.run:

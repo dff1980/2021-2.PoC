@@ -94,7 +94,7 @@ chrony-pool-suse-remove:
 
 chronyd-install:
   pkg.installed:
-    - names: 
+    - names:
       - chrony-pool-empty
       - chrony
     - require:

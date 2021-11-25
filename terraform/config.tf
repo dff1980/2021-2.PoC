@@ -6,6 +6,8 @@ locals {
    - SUSEConnect -e pzhukov@suse.com -r ${var.registry_key}
    - zypper ref
    - ssh-keygen -N "" -f /root/.ssh/id_rsa
+   - sed -i 's/PubkeyAuthentication\s*no/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+   - systemctl restart sshd
    - mkdir -p /srv/salt/ssh
    - cp /root/.ssh/id_rsa.pub /srv/salt/ssh/
    - cp /root/.ssh/id_rsa.pub /home/sles/.ssh/
@@ -108,13 +110,15 @@ data template_file "userdata_router" {
     salt_top_sls        = filebase64("${path.module}/salt/salt/top.sls")
     salt_router_sls     = filebase64("${path.module}/salt/salt/router.sls")
     salt_rancher_sls    = filebase64("${path.module}/salt/salt/rancher.sls")
-    salt_ssh_sls        = filebase64("${path.module}/salt/salt/ssh.sls")
+    salt_rke_sls        = filebase64("${path.module}/salt/salt/rke.sls")
+    salt_ssh-key_sls        = filebase64("${path.module}/salt/salt/ssh-key.sls")
     salt_router_chrony          = filebase64("${path.module}/salt/salt/router/ntp.conf")
     salt_router_dhcpd_conf      = filebase64("${path.module}/salt/salt/router/dhcpd.conf")
-    salt_router_rancher_suse_ru = filebase64("${path.module}/salt/salt/router/rancher.suse.ru")
+    salt_router_rancher_suse_ru = filebase64("${path.module}/salt/salt/router/stend.suse.ru")
     salt_router_addr_arpa       = filebase64("${path.module}/salt/salt/router/14.168.192.in-addr.arpa")
     salt_main_ntp                    = filebase64("${path.module}/salt/salt/main/ntp.conf")
-    salt_reactor_dhcpd_conf          = filebase64("${path.module}/salt/reactor/start.sls")
+    salt_reactor_start               = filebase64("${path.module}/salt/reactor/start.sls")
+    salt_reactor_delkey              = filebase64("${path.module}/salt/reactor/delkey.sls")
     salt_master_conf                 = filebase64("${path.module}/salt/master/router.conf")
     salt_autosign_key                = filebase64("${path.module}/salt/master/autosign_key")
     salt_router_conf                 = filebase64("${path.module}/salt/minion/router.conf")

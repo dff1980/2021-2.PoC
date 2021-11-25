@@ -116,7 +116,12 @@ Do not use below metod (because this doesn't  work)
 SUSEConnect -p PackageHub/15.2/x86_64
 zypper install cloud-init-vmware-guestinfo
 ```
+### Change sshd config
+We switch off key-based authentication for stop RKE auto-configure until the moment configure node.
 
+```bash
+sed -i 's/\#PubkeyAuthentication\s*yes/PubkeyAuthentication no/' /etc/ssh/sshd_config
+```
 ### Clenup Install for creating teamplates
 
 ```bash
@@ -226,3 +231,4 @@ other staff need to systematize
 
 
 
+salt-run state.event pretty=True

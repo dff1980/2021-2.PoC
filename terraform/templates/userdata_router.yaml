@@ -20,6 +20,11 @@ write_files:
     permissions: '0644'
     owner: root:salt
   - encoding: b64
+    content: ${salt_rke_sls}
+    path: /srv/salt/rke.sls
+    permissions: '0644'
+    owner: root:salt
+  - encoding: b64
     content: ${salt_rancher_sls}
     path: /srv/salt/rancher.sls
     permissions: '0644'
@@ -36,7 +41,7 @@ write_files:
     owner: root:salt
   - encoding: b64
     content: ${salt_router_rancher_suse_ru}
-    path: /srv/salt/router/rancher.suse.ru
+    path: /srv/salt/router/stend.suse.ru
     permissions: '0644'
     owner: root:salt
   - encoding: b64
@@ -45,18 +50,23 @@ write_files:
     permissions: '0644'
     owner: root:salt
   - encoding: b64
-    content: ${salt_reactor_dhcpd_conf}
+    content: ${salt_reactor_start}
     path: /srv/reactor/start.sls
     permissions: '0644'
     owner: root:salt
+  - encoding: b64
+    content: ${salt_reactor_delkey}
+    path: /srv/reactor/delkey.sls
+    permissions: '0644'
+    owner: root:salt    
   - encoding: b64
     content: ${salt_main_ntp}
     path: /srv/salt/main/ntp.conf
     permissions: '0644'
     owner: root:salt
   - encoding: b64
-    content: ${salt_ssh_sls}
-    path: /srv/salt/ssh.sls
+    content: ${salt_ssh-key_sls}
+    path: /srv/salt/ssh-key.sls
     permissions: '0644'
     owner: root:salt
   - path: /srv/salt/registration.sls

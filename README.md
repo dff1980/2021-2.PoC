@@ -106,6 +106,10 @@ wget https://github.com/vmware-archive/cloud-init-vmware-guestinfo/archive/refs/
 tar -zxf v1.4.1.tar.gz
 cd cloud-init-vmware-guestinfo-1.4.1/
 ./install.sh
+```
+
+
+```bash
 rm /etc/cloud/cloud.cfg.d/99-DataSourceVMwareGuestInfo.cfg
 echo 'datasource_list: [ "NoCloud", "VMwareGuestInfo" ]' > /etc/cloud/cloud.cfg.d/10_
 datasource_list.cfg
@@ -166,7 +170,7 @@ terraform destroy
 
 ???Docker Install URL none???
 
-??? shut off sshd at template and start at salt ???
+??? shut off sshd key authentication at template and start at salt ???
 
 # Cloud Init for Rancher nodes
 ```yaml

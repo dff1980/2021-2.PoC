@@ -1,9 +1,9 @@
 $TTL 2D
-@		IN SOA		router.stend.suse.ru.	root.router.stend.suse.ru. (
+@		IN SOA		router.stend.local.	root.router.stend.local. (
                 2019031800	; serial
                 3H		; refresh
                 1H		; retry
                 1W		; expiry
                 1D )		; minimum
-14.168.192.in-addr.arpa.	IN NS		stend.suse.ru.
-254.14.168.192.in-addr.arpa.	IN PTR		router.stend.suse.ru.
+14.168.192.in-addr.arpa.	IN NS		stend.local.
+254.14.168.192.in-addr.arpa.	IN PTR		router.stend.local.

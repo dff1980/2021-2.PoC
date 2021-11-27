@@ -114,7 +114,7 @@ data template_file "userdata_router" {
     salt_ssh-key_sls        = filebase64("${path.module}/salt/salt/ssh-key.sls")
     salt_router_chrony          = filebase64("${path.module}/salt/salt/router/ntp.conf")
     salt_router_dhcpd_conf      = filebase64("${path.module}/salt/salt/router/dhcpd.conf")
-    salt_router_rancher_suse_ru = filebase64("${path.module}/salt/salt/router/stend.suse.ru")
+    salt_router_rancher_suse_ru = filebase64("${path.module}/salt/salt/router/stend.local")
     salt_router_addr_arpa       = filebase64("${path.module}/salt/salt/router/14.168.192.in-addr.arpa")
     salt_main_ntp                    = filebase64("${path.module}/salt/salt/main/ntp.conf")
     salt_reactor_start               = filebase64("${path.module}/salt/reactor/start.sls")

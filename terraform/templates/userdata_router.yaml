@@ -41,7 +41,7 @@ write_files:
     owner: root:salt
   - encoding: b64
     content: ${salt_router_rancher_suse_ru}
-    path: /srv/salt/router/stend.suse.ru
+    path: /srv/salt/router/stend.local
     permissions: '0644'
     owner: root:salt
   - encoding: b64

@@ -23,7 +23,7 @@ rancher_nodes_settings = {
     vm_node_name           = "rancher_node"
     router_ip              = "192.168.14.254"
     username               = "sles"
-    domain                 = "stend.suse.ru"
+    domain                 = "stend.local"
     network                = "192.168.14"
     netmask                = "24"
 }

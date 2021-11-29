@@ -1,10 +1,11 @@
 # 2021-1.PoC
-Rancher 2.6 PoC
+Conceptual configure stend for Rancher 2.6 PoC using Terraform and Salt.
 
 #terraform, #salt, #RKE, #Rancher
 
 ###### Current state: automatically create virtual Mashines and preconfigure SLES for installing RKE, Ranche.
 ###### Road Map: Configure Nпinx (forgot to write the config) for LB, Configure RKE and Rancher
+###### We can configure Rancher using Terraform, but this is need change logic of project
 
 ## Create VMware vSphere cluster for RKE cluster & Rancher using Terraform
 

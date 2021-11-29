@@ -5,7 +5,7 @@ Conceptual configure stend for Rancher 2.6 PoC using Terraform and Salt.
 
 ###### Current state: automatically create virtual Mashines and preconfigure SLES for installing RKE, Ranche.
 ###### Road Map: Configure Nпinx (forgot to write the config) for LB, Configure RKE and Rancher
-###### We can configure Rancher using Terraform, but this is need change logic of project
+###### We can configure Rancher using Terraform, but this is need change logic of project. Please use https://github.com/dff1980/2021-2.PoC
 
 ## Create VMware vSphere cluster for RKE cluster & Rancher using Terraform
 
@@ -108,7 +108,7 @@ tar -zxf v1.4.1.tar.gz
 cd cloud-init-vmware-guestinfo-1.4.1/
 ./install.sh
 ```
-
+After change config.
 
 ```bash
 rm /etc/cloud/cloud.cfg.d/99-DataSourceVMwareGuestInfo.cfg
@@ -116,7 +116,7 @@ echo 'datasource_list: [ "NoCloud", "VMwareGuestInfo" ]' > /etc/cloud/cloud.cfg.
 datasource_list.cfg
 ```
 
-Do not use below metod (because this doesn't  work)
+Do not use the metod below (because this doesn't  work):
 ```
 SUSEConnect -p PackageHub/15.2/x86_64
 zypper install cloud-init-vmware-guestinfo

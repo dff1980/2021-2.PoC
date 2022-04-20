@@ -27,7 +27,7 @@ PoC can be deployed in VMware virtualization environment.
 
 Currently, PoC use terraform for create virtual mashine and pre-configure and salt for configure router, nat, firewalld, DHCP server, DNS server, NTP server and pre-configure nodes for install RKE and Rancher.
 
-## Requarments
+## Requirements
 
 VMware vSphere infrastructure enviroment.
 
